@@ -1,0 +1,20 @@
+name: stock-dashboard
+
+services:
+  local-postgres-service:
+    container_name: local-postgresql
+    image: postgres:16.4-alpine
+    environment:
+      POSTGRES_PASSWORD: docker
+      POSTGRES_USER: postgres
+      POSTGRES_DB: stock-dashboard
+    expose:
+      - "5432"
+    ports:
+      - "5432:5432"
+    volumes:
+      - local-postgres-volume:/var/lib/postgresql/data
+
+volumes:
+  local-postgres-volume:
+

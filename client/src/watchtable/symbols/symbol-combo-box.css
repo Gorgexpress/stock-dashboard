@@ -1,0 +1,18 @@
+.watchlist {
+    max-height:90vh;
+    overflow-y: auto;
+    padding-left:1rem;
+    transition: width 0.2 ease-out;
+}
+
+.watchlist-list {
+    list-style: none;
+    text-align: center;
+    margin: 5px;
+    padding:0;
+}
+
+.watchlist-item {
+    border:1px solid whitesmoke;
+    text-align: center;
+}

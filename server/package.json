@@ -1,0 +1,38 @@
+{
+  "name": "stock-dashboard",
+  "version": "0.1.0",
+  "main": "index.js",
+  "author": "Michael Abramowski",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "nodemon -L src/index.ts",
+    "debug": "nodemon --inspect-brk -L src/index.ts",
+    "db:migrate": "kysely migrate:up",
+    "db:seed": "kysely seed:run",
+    "docker:up": "docker-compose up --detach",
+    "docker:down": "docker-compose down",
+    "setup": "yarn docker:up && yarn db:migrate && yarn db:seed",
+    "start:cold": "/service/wait-for-it.sh postgres:5432 -t 300 && yarn setup && yarn start"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/morgan": "^1.9.9",
+    "@types/pg": "^8.11.10",
+    "@types/ws": "^8.5.12",
+    "kysely-ctl": "^0.9.0",
+    "nodemon": "^3.1.6",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.2"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "express-async-errors": "^3.1.1",
+    "kysely": "^0.27.4",
+    "morgan": "^1.10.0",
+    "pg": "^8.13.0",
+    "ws": "^8.18.0"
+  }
+}

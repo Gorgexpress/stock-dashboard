@@ -1,0 +1,13 @@
+#root {
+    display: flex;
+    flex-direction: row;
+  }
+  .error-message {
+    color:red;
+  }
+
+  .table {
+    width: 100%;
+    height: 90vh;
+  }
+  
