@@ -7,16 +7,18 @@
 #### To get the Backend up and running
 
 1. `cd server`
-2. prepare .env file  
+1. `nvm use`
+1. prepare .env file  
     1. create a file in the server folder named `.env`  
-    2. copy the contents from .env.example into .env
-    3. edit environmental variables as needed. You'll need valid Alpaca Broker and Market API keys in the .env file.
-3. `yarn install`
-4. `yarn setup`
-5. `yarn start`
+    1. copy the contents from .env.example into .env
+    1. edit environmental variables as needed. You'll need valid Alpaca Broker and Market API keys in the .env file.
+1. `yarn install`
+1. `yarn setup`
+1. `yarn start`
 #### To get the Client up and running
 
 1. `cd client`
+1. `nvm use`
 1. `yarn install` 
 1. `yarn dev`
 
