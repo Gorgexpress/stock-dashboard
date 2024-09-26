@@ -6,6 +6,9 @@ class ConfigService {
       throw new Error(`Tried to access nonexistent environmental variable: ${key}`)
     return process.env[key] as string;
   }
+  set(key: string, value: string) {
+    process.env[key] = value;
+  }
 
 }
 

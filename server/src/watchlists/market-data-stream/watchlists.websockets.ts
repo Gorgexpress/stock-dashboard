@@ -1,18 +1,9 @@
 import { WebSocket, WebSocketServer } from "ws";
-import WatchListsService from "./watchlists.service";
-import ConfigService from "../config/config.service";
+import WatchListsService from "../watchlists.service";
+import ConfigService from "../../config/config.service";
+import AlpacaMarketStreamData from "./interfaces/alpaca-market-stream-data.interface";
+import StockPrice from "./interfaces/stock-price.interface";
 
-interface StockPrice {
-  symbol: string;
-  price: number;
-  time: string;
-}
-
-interface AlpacaMarketStreamData {
-  S: string;
-  t: string;
-  p: number;
-}
 
 class WatchListsWebsockets {
   client!: WebSocket;
