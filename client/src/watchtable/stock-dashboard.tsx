@@ -91,6 +91,7 @@ function StockDashboard() {
     const client = new WebSocket(import.meta.env.VITE_BACKEND_WEBSOCKET_URL);
     clientRef.current = client;
     client.onopen = ev => {
+      console.log("opened");
       //subscribe to stocks in watchlist
       setErrorMessage('');
       if(watchlist && watchlist.length > 0)
@@ -98,11 +99,11 @@ function StockDashboard() {
     };
     client.onclose = ev => {
       console.log('closed');
-      setErrorMessage("Websocket was closed. Is the server running? Please refresh when you want to attempt to reconnect.");
+      setErrorMessage("Websocket was closed. Is the server running? Retrying every 10 seconds...");
       setTimeout(function(){
         if (clientRef.current !== null && clientRef.current.readyState === WebSocket.CLOSED)
-          setupWebSockets([])}
-      , 10000); //retry in 10 seconds. There's probably a better way to do this...
+          setupWebSockets(gridRef.current?.props.rowData as StockPrice[])
+        }, 10000); //retry in 10 seconds. There's probably a better way to do this...
     }
     client.onerror = (error) => {
       setErrorMessage("Could not connect to the server.");
