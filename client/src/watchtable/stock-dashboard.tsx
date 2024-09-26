@@ -7,6 +7,7 @@ import { ColDef } from 'ag-grid-community';
 import SymbolsCombobox from './symbol-combo-box/symbol-combo-box';
 import WatchTableRemoveButton, { WatchTableRemoveButtonProps } from './watchtable-remove-button';
 import StockPrice from './stock-price.interface';
+import { toast } from 'react-toastify';
 
 function StockDashboard() {
   const gridRef = useRef<AgGridReact<StockPrice> | null>(null); 
@@ -69,7 +70,9 @@ function StockDashboard() {
       return;
     }
     const client = clientRef.current;
+    //I might want to have the server send a confirmation that the subscribe action succeeded
     client?.send(JSON.stringify({action: 'subscribe', symbols: [symbol]}));
+    toast(`${symbol} added`);
     getLastTrades([{symbol}], true);
   }
   function removeFromWatchlist(props: WatchTableRemoveButtonProps) {
@@ -77,6 +80,7 @@ function StockDashboard() {
     const symbol = props.data?.symbol;
     const client = clientRef.current;
     client?.send(JSON.stringify({action: 'unsubscribe', symbols: [symbol]}));
+    toast(`${symbol} removed`);
     const newRowData: StockPrice[] = [];
     gridRef.current?.api.forEachNode((rowNode: any, index: number) => {
       if(rowNode.data.symbol !== symbol) newRowData.push(rowNode.data);
