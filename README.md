@@ -2,7 +2,7 @@
 
 - [Docker and Docker-Compose](https://www.docker.com/)
 - [Node.js and NVM](https://nodejs.org/en/download/package-manager)
-- [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable)
+- [Yarn](https://classic.yarnpkg.com/lang/en/docs/install)
 
 #### To get the Backend up and running
 

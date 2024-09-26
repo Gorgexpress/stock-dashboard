@@ -49,17 +49,8 @@ function StockDashboard() {
     const trades = await response.json();
     const newList = watchlist.map(s => { return { symbol: s.symbol, price: trades[s.symbol]?.price, time: trades[s.symbol]?.time}});
     if(shouldUpdateState) {
-      const newRowData: StockPrice[] = [...newList, ...rowData];
-      const groupedData = newRowData.reduce((acc: Record<string, StockPrice>, cur) => {
-        const existingEntry = acc[cur.symbol];
-        const existingEntryTime = acc[cur.symbol]?.time;
-        const newEntryTime = cur.time;
-        //lots of undefined checks to make typescript happy
-        if (!existingEntry  || existingEntryTime === undefined || (newEntryTime !== undefined && existingEntryTime < newEntryTime))
-          acc[cur.symbol] = { symbol: cur.symbol, price: cur.price, time: cur.time};
-        return acc;
-      }, {})
-      setRowData(Object.values(groupedData));
+      const newRowData = mergeDuplicatesInWatchlist([...watchlist, ...newList])
+      setRowData(newRowData);
     }
     return newList;
   }
@@ -73,7 +64,7 @@ function StockDashboard() {
     //I might want to have the server send a confirmation that the subscribe action succeeded
     client?.send(JSON.stringify({action: 'subscribe', symbols: [symbol]}));
     toast(`${symbol} added`);
-    getLastTrades([{symbol}], true);
+    getLastTrades([...getRowData(), {symbol}], true);
   }
   function removeFromWatchlist(props: WatchTableRemoveButtonProps) {
     //Didn't have much luck accessing the rowData variable directly, but getting all rows via the ag grid api works fine
