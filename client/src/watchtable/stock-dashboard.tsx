@@ -137,6 +137,21 @@ function StockDashboard() {
     }, {});
     return Object.values(groupedData);
   }
+
+  function cleanupWebsockets() {
+    if(clientRef.current !== null) {
+      //maybe I can figure out a good way to do this while keeping typescript happy later...
+      console.log("cleaning up websocket");
+      const client = clientRef.current as any;
+      //not sure if removing event listeners is necessary
+      client.onopen = null;
+      client.onclose = null;
+      client.onerror = null;
+      client.onmessage = null;
+      client.close();
+      clientRef.current = null;
+    }
+  }
   useEffect(() => {
     let mounted = true;
     async function init() {
@@ -146,7 +161,10 @@ function StockDashboard() {
         await setupWebSockets(watchlist);
     }
     init(); 
-    return () => {mounted = false; clientRef.current?.close(); clientRef.current = null;};
+    return () => {
+      mounted = false; 
+      cleanupWebsockets();
+    };
   }, []);
 
  

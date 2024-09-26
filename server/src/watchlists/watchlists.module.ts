@@ -8,6 +8,8 @@ import WatchlistsService from "./watchlists.service";
 import WatchlistsWebsockets from "./market-data-stream/watchlists.websockets";
 import WatchlistsMockServer from './market-data-stream/watchlists-mock-server.websockets';
 
+//This module manages all the watch list logic. It uses websockets to stream live market data, can grab the
+//last trades for a list of symbols via an HTTP request, and manages the list of watched symbols in the database.
 class WatchlistsModule {
     watchlistsService!: WatchlistsService;
     watchlistsRepository!: WatchlistsRepository;

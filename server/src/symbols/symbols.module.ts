@@ -4,6 +4,7 @@ import SymbolsController from "./symbols.controller";
 import SymbolsRepository from "./symbols.repository";
 import SymbolsRoutes from './symbols.routes';
 
+//This module manages the list of valid stock symbols.
 class SymbolsModule {
     symbolsController!: SymbolsController;
     symbolsRepository!: SymbolsRepository;

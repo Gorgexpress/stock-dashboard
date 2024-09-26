@@ -37,8 +37,6 @@ class WatchlistsService {
         }
       });
     const responseJson = await result.json();
-    console.log(result);
-    console.log(responseJson);
     const lastTrades = Object.keys(responseJson.trades).reduce((acc: Record<string, any>, symbol: string) => {
       acc[symbol] = {
         price: responseJson.trades[symbol].p,
