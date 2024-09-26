@@ -4,11 +4,11 @@ import { AgGridReact } from 'ag-grid-react';
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
 import { ColDef } from 'ag-grid-community';
-import SymbolsCombobox from './symbols/symbol-combo-box';
+import SymbolsCombobox from './symbol-combo-box/symbol-combo-box';
 import WatchTableRemoveButton, { WatchTableRemoveButtonProps } from './watchtable-remove-button';
 import StockPrice from './stock-price.interface';
 
-function WatchTable() {
+function StockDashboard() {
   const gridRef = useRef<AgGridReact<StockPrice> | null>(null); 
   const clientRef = useRef<WebSocket| null>(null);
   const [errorMessage, setErrorMessage] = useState<string>('');
@@ -164,4 +164,4 @@ function WatchTable() {
   )
 }
 
-export default WatchTable;
+export default StockDashboard;

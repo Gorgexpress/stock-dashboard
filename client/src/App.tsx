@@ -1,10 +1,10 @@
 import './App.css'
-import WatchTable from './watchtable/stock-dashboard';
+import StockDashboard from './watchtable/stock-dashboard';
 
 function App() {
   return (
     <>
-      <WatchTable/>
+      <StockDashboard/>
     </>
   )
 }
