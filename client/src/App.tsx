@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <StockDashboard/>
-      <ToastContainer position="top-center" autoClose={1300}/>
+      <ToastContainer position="bottom-right" autoClose={1300} theme={"dark"}/>
     </>
   )
 }
