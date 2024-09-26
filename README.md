@@ -1,8 +1,8 @@
 #### Requirements
 
 - [Docker and Docker-Compose](https://www.docker.com/)
-- [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable)
 - [Node.js and NVM](https://nodejs.org/en/download/package-manager)
+- [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable)
 
 #### To get the Backend up and running
 
