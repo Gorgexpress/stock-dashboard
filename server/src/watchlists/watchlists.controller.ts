@@ -8,11 +8,11 @@ class WatchlistsController {
     res.send(symbols);
   }
   async patch(req: Request, res: Response) {
-    await this.watchlistService.addSymbols(req.body);
+    await this.watchlistService.addSymbols(req.body.symbols);
     res.sendStatus(200);
   }
   async delete(req: Request, res: Response) {
-    await this.watchlistService.addSymbols(req.body);
+    await this.watchlistService.removeSymbols(req.body.symbols);
     res.sendStatus(200);
   }
   async getLastTrades(req: Request, res: Response) {
