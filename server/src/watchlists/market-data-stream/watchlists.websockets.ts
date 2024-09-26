@@ -3,7 +3,12 @@ import WatchListsService from "../watchlists.service";
 import ConfigService from "../../config/config.service";
 import AlpacaMarketStreamData from "./interfaces/alpaca-market-stream-data.interface";
 import StockPrice from "./interfaces/stock-price.interface";
+import { z, ZodError } from "zod";
 
+const websocketSchema = z.object({
+  action: z.string().min(1),
+  symbols: z.string().min(1).array()
+});
 
 class WatchListsWebsockets {
   client!: WebSocket;
@@ -23,12 +28,9 @@ class WatchListsWebsockets {
         try { 
           const data = JSON.parse(message.toString());
           console.log('received: %s', data);
+          websocketSchema.parse(data);
           switch (data.action) {
             case 'subscribe':
-              console.log(JSON.stringify({
-                action: 'subscribe',
-                trades: data.symbols
-              }));
               if (data.symbols && data.symbols.length > 0) {
                 this.client.send(JSON.stringify({
                   action: 'subscribe',
@@ -47,10 +49,16 @@ class WatchListsWebsockets {
               }
               break;
             default:
+              ws.send(JSON.stringify({message:`Unknown action ${data.action}`}))
               break;
           }
         } catch(e) {
           console.error(`Error occursed while parsing client websocket message: ${e}`)
+          if(e instanceof ZodError) {
+            ws.send(JSON.stringify({message: "A validation error has occured", issues: e.issues.map(i => i.message)}));
+            return;
+          }
+          ws.send(JSON.stringify({error: "An error has occured"}));
         }
       });
     });
@@ -82,7 +90,7 @@ class WatchListsWebsockets {
         //const pricesParsed:  Array<StockPrice> = prices.map(p => { return { symbol: p.S, price: p.p, time: p.t}});
         this.server.clients.forEach( ws => {
           if (ws.readyState === WebSocket.OPEN)
-            ws.send(JSON.stringify(Object.values(pricesReduced)))
+            ws.send(JSON.stringify(Object.values(pricesReduced)));
         });
       } catch(e) {
         console.error(`Error parsing Alpaca websocket message: ${e}`);

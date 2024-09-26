@@ -154,7 +154,7 @@ function StockDashboard() {
         await setupWebSockets(watchlist);
     }
     init(); 
-    return () => {mounted = false; clientRef.current?.close();};
+    return () => {mounted = false; clientRef.current?.close(); clientRef.current = null;};
   }, []);
 
  
