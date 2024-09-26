@@ -99,7 +99,10 @@ function StockDashboard() {
     client.onclose = ev => {
       console.log('closed');
       setErrorMessage("Websocket was closed. Is the server running? Please refresh when you want to attempt to reconnect.");
-      //setTimeout(function(){setupWebSockets([])}, 10000); //retry in 10 seconds. Need a way to clear this if the component is unmounted.
+      setTimeout(function(){
+        if (clientRef.current !== null && clientRef.current.readyState === WebSocket.CLOSED)
+          setupWebSockets([])}
+      , 10000); //retry in 10 seconds. There's probably a better way to do this...
     }
     client.onerror = (error) => {
       setErrorMessage("Could not connect to the server.");
