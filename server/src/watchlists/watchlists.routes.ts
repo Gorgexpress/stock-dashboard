@@ -5,6 +5,11 @@ import { bodySymbolsSchema, querySymbolsSchema } from "./watchlists.validate";
 import { ZodBodyValidator, ZodQueryValidator } from "../validate.middleware";
 import { StockPriceWithoutSymbol } from "./market-data-stream/interfaces/stock-price.interface";
 
+//Not sure if the lasttrades endpoint belongs here, but I not sure if I wanna make a new module for it right now
+//Probably would've been best to put any Alpaca code in its own module. 
+//Outside of lasttrades, the routes here are pretty simple. 
+//Despite the name "watchlists".. the underlying sql table is really just one big list. If I continued to work on this project, I'm sure
+//at some point I would add support for multiple watchlists though. 
 class WatchlistsRoutes { 
   router!: Router;
   constructor(private readonly watchlistsController: WatchlistsController) {
