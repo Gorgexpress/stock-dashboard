@@ -8,7 +8,7 @@ class SymbolsRoutes {
     this.router = express.Router();
     /**
      * Get a list of supported symbols
-     * There's a lot of them, and the list probably wouldn't change super frequently. Might be worth cacheing. 
+     * There's a lot of them, and the list probably wouldn't change super frequently.
      * @returns {Symbol[]} A list of all supported symbols. 
      */
     this.router.get('/symbols', this.symbolsController.get.bind(this.symbolsController));
