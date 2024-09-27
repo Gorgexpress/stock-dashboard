@@ -34,7 +34,10 @@ function SymbolsCombobox(props: SymbolsComboboxProps) {
       return symbol ? symbol.symbol : '';
     },
     onInputValueChange: ({inputValue}) => {
-      if(inputValue === '') return;
+      if(inputValue === '') {
+        setSymbolsFiltered([]);
+        return;
+      }
       //filter the list of symbols so that we only show symbols starting with our input value
       const existingSymbolsSet = props.getCurrentWatchedSymbols();
       //There's 10544 symbols right now. We want to limit the # of symbols we render, and avoid processing the entire array.

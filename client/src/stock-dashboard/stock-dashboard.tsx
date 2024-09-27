@@ -15,7 +15,7 @@ function StockDashboard() {
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [rowData, setRowData] = useState<StockPrice[]>([]);
   const [colDefs, _setColDefs] = useState<ColDef[]>([
-    { field: "symbol", },
+    { field: "symbol"},
     { field: "price" },
     { field: "time", valueFormatter: (v: any) => {return v.value === undefined ? '' :new Date(v.value).toLocaleTimeString()}},
     {
@@ -107,7 +107,7 @@ function StockDashboard() {
         message = message.filter(m => m.symbol);
         if(!message)return;
         if(!watchlist) watchlist = [];
-        const newRowData: StockPrice[] = mergeDuplicatesInWatchlist([...message, ...getRowData()]);
+        const newRowData: StockPrice[] = mergeDuplicatesInWatchlist([...getRowData(), ...message]);
         setRowData(newRowData);
       }
     }
