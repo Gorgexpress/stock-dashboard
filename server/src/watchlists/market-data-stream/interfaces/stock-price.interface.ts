@@ -4,3 +4,10 @@ export default interface StockPrice {
   time: string;
 }
 
+export interface StockPriceWithoutSymbol {
+  price: number;
+  time: string;
+}
+
+
+

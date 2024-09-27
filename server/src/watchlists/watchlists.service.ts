@@ -1,7 +1,7 @@
-import { WebSocket, WebSocketServer } from "ws";
 import WatchlistsRepository from "./watchlists.repository";
 import ConfigService from "../config/config.service";
 import Watchlist from "./watchlist.entity";
+import { StockPriceWithoutSymbol } from "./market-data-stream/interfaces/stock-price.interface";
 
 
 class WatchlistsService {
@@ -12,7 +12,7 @@ class WatchlistsService {
     async getWatchlist(): Promise<Watchlist[]> {
       return await this.watchListsRepository.getAll();
     }
-    async addSymbols(symbols: string[]): Promise<void> {
+    async addSymbols(symbols: Watchlist[]): Promise<void> {
       const watchlistEntries = symbols.map(s => { return { symbol:s};});
       await this.watchListsRepository.addSymbols(watchlistEntries);
     }
@@ -37,7 +37,7 @@ class WatchlistsService {
         }
       });
     const responseJson = await result.json();
-    const lastTrades = Object.keys(responseJson.trades).reduce((acc: Record<string, any>, symbol: string) => {
+    const lastTrades = Object.keys(responseJson.trades).reduce((acc: Record<string, StockPriceWithoutSymbol>, symbol: string) => {
       acc[symbol] = {
         price: responseJson.trades[symbol].p,
         time: responseJson.trades[symbol].t
