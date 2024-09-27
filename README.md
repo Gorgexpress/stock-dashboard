@@ -42,4 +42,6 @@ You can run `yarn docker:down` to get stop the docker container containing Postg
   
 Real live market data will only be streamed while the stock market is open. If you want to run a simulation of the stock market instead, set `MOCK_ALPACA_WEBSOCKETS=true` in the backend .env file  
 
-Only 30 stock symbols can be watched at a time(a limit imposed by Alpaca's free tier)
+Only 30 stock symbols can be watched at a time(a limit imposed by Alpaca's free tier)  
+
+The UI is pretty minimal. If I spent more time on this, I would definitely look into improving it, especially the symbol chooser. Maybe add support for multiple users/watchlists too. 
