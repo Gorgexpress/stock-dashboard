@@ -1,3 +1,6 @@
+#### Stock Dashboard
+A full-stack application that allows you to maintain a list of stocks, and get live updates to their prices.
+
 #### Requirements
 
 - [Docker and Docker-Compose](https://www.docker.com/)
@@ -14,7 +17,10 @@
     1. edit environmental variables as needed. You'll need valid Alpaca Broker and Market API keys in the `.env` file.
 1. `yarn install`
 1. `yarn setup`
-1. `yarn start`
+1. `yarn start`  
+  
+The REST API will be available at port 3000. The WebSocket stream will be available at port 8080, and the database will be available at port 5432 
+
 #### To get the Client up and running
 
 1. `cd client`
@@ -25,10 +31,9 @@
 1. `yarn db:seed`
 1. `yarn dev`
 
-The client will be available at port "http://localhost:5173". 
+The client will be available at "http://localhost:5173". While both the server and client are running, navigating to that url in a web browser will show the dashboard
   
-The REST API will be available at port 3000. The WebSocket stream will be available at port 8080, and the database will be available at port 5432 
-  
+#### Misc
 You can run `yarn docker:down` to get stop the docker container containing Postgres, or `yarn docker:down -v` to remove both Postgres and the volume it uses
   
 Real live market data will only be streamed while the stock market is open. If you want to run a simulation of the stock market instead, set `MOCK_ALPACA_WEBSOCKETS=true` in the backend .env file  
