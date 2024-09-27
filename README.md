@@ -1,5 +1,5 @@
 #### Stock Dashboard
-A full-stack application that allows you to maintain a list of stocks, and get live updates to their prices.
+A full-stack application that allows you to maintain a list of stocks, and get live updates to their prices. Uses https://alpaca.markets/ for market data.
 
 
 https://github.com/user-attachments/assets/2a72b64c-737f-4407-84b5-94820c0dc228
@@ -44,4 +44,6 @@ Real live market data will only be streamed while the stock market is open. If y
 
 Only 30 stock symbols can be watched at a time(a limit imposed by Alpaca's free tier)  
 
-The UI is pretty minimal. If I spent more time on this, I would definitely look into improving it, especially the symbol chooser. Maybe add support for multiple users/watchlists too. 
+The UI is pretty minimal. If I spent more time on this, I would definitely look into improving it, especially the symbol chooser. Maybe add support for multiple users/watchlists too.  
+
+I'd normally use NestJS for back-ends, but this was a good opportunity to derust my plain Express skills.
