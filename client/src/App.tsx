@@ -1,5 +1,5 @@
 import './App.css'
-import StockDashboard from './watchtable/stock-dashboard';
+import StockDashboard from './stock-dashboard/stock-dashboard';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
