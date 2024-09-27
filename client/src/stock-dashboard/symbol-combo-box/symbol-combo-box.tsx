@@ -61,7 +61,7 @@ function SymbolsCombobox(props: SymbolsComboboxProps) {
   })
   return (
     <div className="watchlist">
-      <label {...getLabelProps()}>Choose an element:</label>
+      <label {...getLabelProps()}>Choose a symbol:</label>
       <div>
         <input {...getInputProps()} />
         <button
