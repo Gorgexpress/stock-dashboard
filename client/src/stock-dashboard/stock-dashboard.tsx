@@ -5,7 +5,7 @@ import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
 import { ColDef } from 'ag-grid-community';
 import SymbolsCombobox from './symbol-combo-box/symbol-combo-box';
-import WatchTableRemoveButton, { WatchTableRemoveButtonProps } from './watchtable-remove-button';
+import SymbolRemoveButton, { SymbolRemoveButtonProps } from './symbol-remove-button';
 import StockPrice from './stock-price.interface';
 import { toast } from 'react-toastify';
 
@@ -21,7 +21,7 @@ function StockDashboard() {
     {
       field: 'button',
       headerName: 'Remove',
-      cellRenderer: WatchTableRemoveButton,
+      cellRenderer: SymbolRemoveButton,
       cellRendererParams: {
         onClick: removeFromWatchlist
       }
@@ -66,7 +66,7 @@ function StockDashboard() {
     toast(`${symbol} added`);
     getLastTrades([...getRowData(), {symbol}], true);
   }
-  function removeFromWatchlist(props: WatchTableRemoveButtonProps) {
+  function removeFromWatchlist(props: SymbolRemoveButtonProps) {
     //Didn't have much luck accessing the rowData variable directly, but getting all rows via the ag grid api works fine
     const symbol = props.data?.symbol;
     const client = clientRef.current;
