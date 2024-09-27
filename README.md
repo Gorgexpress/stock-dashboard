@@ -1,6 +1,10 @@
 #### Stock Dashboard
 A full-stack application that allows you to maintain a list of stocks, and get live updates to their prices.
 
+
+https://github.com/user-attachments/assets/2a72b64c-737f-4407-84b5-94820c0dc228
+
+
 #### Requirements
 
 - [Docker and Docker-Compose](https://www.docker.com/)
