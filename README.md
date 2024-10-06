@@ -44,6 +44,6 @@ Real live market data will only be streamed while the stock market is open. If y
 
 Only 30 stock symbols can be watched at a time(a limit imposed by Alpaca's free tier)  
 
-The UI is pretty minimal. If I spent more time on this, I would definitely look into improving it, especially the symbol chooser. Maybe add support for multiple users/watchlists too.  
+The UI is pretty minimal. If I spent more time on this, I would definitely look into improving it. The symbol chooser is a little janky, and would be better off as a modal instead. The current approach was chosen mostly to save time. I'd also like to clean up the stock-dashboard component. I could use react-query for http calls, and move some of the code related to http calls/websockets to a different file. 
 
 I'd normally use NestJS for back-ends, but this was a good opportunity to derust my plain Express skills.
